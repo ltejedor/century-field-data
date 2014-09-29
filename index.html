@@ -1,0 +1,55 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:700italic,300,600' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+
+
+
+    </head>
+    <body>
+        <header>
+            <h1>Stay safe</h1>
+            <p>while watching the Seahawks!</p>
+        </header>
+
+        <div class="secondary">
+            <p class="sb lsize">When is it safest to visit CenturyLink field?</p>
+            <p>Most dangerous <span class="js-type">time</span>: <span class="sb js-d-most"></span></p>
+            <p>Least dangerous <span class="js-type">time</span>: <span class="sb js-d-least"></span>
+            </p>
+        </div>
+
+        <div class="dark-bg">
+            <div class="grid_2">
+                <p class="sb">View crime rate by</p>
+                <p class="top">(number of crimes per 1000 instances)</p>
+                <p class="select_btn js-show-time is-active">time</p>
+                <p class="select_btn js-show-month">month</p>
+            </div>
+            <div id="chartdiv" class="grid_8 chartStyle"></div>
+        </div>
+
+
+        <script type="text/javascript" src="js/date.js"></script>
+        <script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+        <script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
+        <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/dark.js"></script>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+
+    </body>
+</html>
