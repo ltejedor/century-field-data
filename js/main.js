@@ -2,14 +2,14 @@ $( document ).ready(function() {
 	//on page load, graph by time is showing
 	getData(crimesByTime);
 
-	$('.js-show-month').click(function(){
+	$('.js-show-day').click(function(){
 		$('.js-show-time').removeClass('is-active');
 		$(this).addClass('is-active');
 		getData(crimesByWeekday);
 	});
 
 	$('.js-show-time').click(function(){
-		$('.js-show-month').removeClass('is-active');
+		$('.js-show-day').removeClass('is-active');
 		$(this).addClass('is-active');
 		getData(crimesByTime);
 	});
