@@ -96,6 +96,8 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+.is-hidden{display: none;}
+
 html{overflow-x:hidden;}
 body{font-family: 'Open Sans', sans-serif; overflow-x: hidden;}
 
@@ -123,6 +125,8 @@ header p{color: #fff; font-size: 1.8em; margin-top: -42px;}
 .select_btn{cursor: pointer; line-height: 34px; background-color: #52B848; padding: 2px 8px; opacity: .75;}
 .select_btn.is-active{font-weight: 600; opacity: 1;}
 
+.img_container{width: 15%; float: left; margin-left: 150px;}
+.img_container img{width: 100%;}
 
 /* Responsiveness */
 @media (max-width: 500px) {
@@ -132,6 +136,7 @@ header p{color: #fff; font-size: 1.8em; margin-top: -42px;}
   .grid_8{width: 95%;}
   .dark-bg{height: 720px;}
 }
+
 
 /* ==========================================================================
    Helper classes

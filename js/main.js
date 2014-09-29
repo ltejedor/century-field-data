@@ -17,12 +17,16 @@ $( document ).ready(function() {
 });
 
 var getData = function(graphType){
+	$('#loader').removeClass('is-hidden');
+	$('#chartdiv').addClass('is-hidden');
 	$.ajax({
 		type: "GET",
 		cache: false,
 		url: "https://data.seattle.gov/resource/3k2p-39jp.json?$where=within_circle(incident_location, 47.595146, -122.331601, 1609.34)",
 		})
 	.done(function(data){
+		$('#loader').addClass('is-hidden');
+		$('#chartdiv').removeClass('is-hidden');
 		//send data from api to either the weekday or time bar graphs
 		graphType(data);
 	});
@@ -40,7 +44,9 @@ var crimesByWeekday = function(data){
 	};
 	for(var i=0; i<data.length; i++){
 		var thisDate = (data[i].event_clearance_date);
+		//separate date from date and time
 		var thisDay = thisDate.substring(0, 10);
+		//get day of week name from date
 		var dayName = String(Date.parse(thisDay)).substring(0, 3);
 
 		dayOfWeek[dayName]++;
@@ -48,6 +54,7 @@ var crimesByWeekday = function(data){
 
 	getValues(dayOfWeek, 'day');
 
+	//AMChart for day of week
 	var chart = AmCharts.makeChart("chartdiv", {
 	  "type": "serial",
 		"theme": "dark",
@@ -141,6 +148,7 @@ var crimesByTime = function(data){
 	};
 	for(var i=0; i<data.length; i++){
 		var thisDate = (data[i].event_clearance_date);
+		//separate time from date and time
 		var thisTime = thisDate.substring(11, 13);
 
 		timeOfDay[thisTime]++;
@@ -149,6 +157,7 @@ var crimesByTime = function(data){
 
 	getValues(timeOfDay, 'time');
 
+	//AMChart for time
 	var chart = AmCharts.makeChart("chartdiv", {
 	  "type": "serial",
 		"theme": "dark",
@@ -301,6 +310,7 @@ var getValues = function(thisObj, objType){
 		var valueMin = minProp;
 	}
 
+	//replace spans in second div with relevant information
 	$('.js-type').text(objType);
 	$('.js-d-most').text(valueMost);
 	$('.js-d-least').text(valueMin);
