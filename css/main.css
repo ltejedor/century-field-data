@@ -111,12 +111,16 @@ p{font-size: 1.2em;}
 
 header{width: 100%; background-image: url('../img/seahawk-bg.png'); padding: 2px 60px 40px; background-size: 100%; background-repeat: no-repeat;}
 header p{color: #fff; font-size: 1.8em; margin-top: -42px;}
+footer{padding: 1px 0;}
+footer a {color: #fff; font-size: .9em; padding-left: 25px; text-decoration: none;}
 
-.secondary{background-color: #66BA5D; color: #1C2D5C; padding: 18px 0;}
+.secondary{padding: 18px 0;}
 .secondary p{padding: 0 60px;}
 
 .dark-bg{background-color: #1C2D5C; font-size: 12px; height: 500px; padding: 35px 0; color: #fff;}
 .dark-bg p{margin-left: 20px;}
+
+.green-bg{background-color: #66BA5D; color: #1C2D5C;}
 
 .grid_2{width: 19%; float: left;}
 .grid_8{width: 78%;}
