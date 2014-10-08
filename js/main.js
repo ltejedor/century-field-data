@@ -21,7 +21,6 @@ var getData = function(graphType){
 	$('#chartdiv').addClass('is-hidden');
 	$.ajax({
 		type: "GET",
-		cache: false,
 		url: "https://data.seattle.gov/resource/3k2p-39jp.json?$where=within_circle(incident_location, 47.595146, -122.331601, 1609.34)",
 		})
 	.done(function(data){
