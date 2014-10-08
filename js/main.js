@@ -39,18 +39,13 @@ $( document ).ready(function() {
 var getData = function(graphType, endpoint){
 	$('#loader').removeClass('is-hidden');
 	$('#chartdiv').addClass('is-hidden');
-	console.log(endpoint);
 	$.ajax({
 		type: "GET",
-<<<<<<< HEAD
-		url: "https://data.seattle.gov/resource/3k2p-39jp.json?$where=within_circle(incident_location, 47.595146, -122.331601, 1609.34)",
-=======
 		cache: true,
 		url: "https://data.seattle.gov/resource/3k2p-39jp.json?$where=within_circle(incident_location, 47.595146, -122.331601, 1609.34)" + endpoint,
->>>>>>> 3dac4092b9031e3eb15c8b5ffbd4dc3184d57b39
+
 		})
 	.done(function(data){
-		console.log(data);
 		$('#loader').addClass('is-hidden');
 		$('#chartdiv').removeClass('is-hidden');
 		//send data from api to either the weekday or time bar graphs
@@ -319,16 +314,16 @@ var crimesByTime = function(data){
 
 var getValues = function(thisObj, objType){
 	var max = 0;
-	var min = 100;
+
+	if(objType === 'day'){var min = thisObj['Mon'];}else{var min = thisObj['00'];}
+
 	for (var prop in thisObj) {
-		console.log(thisObj[prop] + "max");
 		if(thisObj[prop] > max){
 			var max = thisObj[prop];
 			var maxProp = prop;
 		}
 	}
 	for (var prop in thisObj) {
-		console.log(thisObj[prop] + "min")
 		if(thisObj[prop] < min){
 			var min = thisObj[prop];
 			var minProp = prop;
