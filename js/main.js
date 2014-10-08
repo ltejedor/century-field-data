@@ -1,29 +1,56 @@
 $( document ).ready(function() {
 	//on page load, graph by time is showing
-	getData(crimesByTime);
+	getData(crimesByTime, '');
+
+	$('.js-filter-auto-thefts').click(function(){
+		if($(this).hasClass('is-active')){
+			$(this).removeClass('is-active');
+		}
+		else{
+			$(this).addClass('is-active');
+		}
+	});
+
 
 	$('.js-show-day').click(function(){
 		$('.js-show-time').removeClass('is-active');
 		$(this).addClass('is-active');
-		getData(crimesByWeekday);
+		if($('.js-filter-auto-thefts').hasClass('is-active')){
+			getData(crimesByWeekday, '&event_clearance_group=Auto%20Thefts');
+		}
+		else{
+			getData(crimesByWeekday, '');
+		}
 	});
 
 	$('.js-show-time').click(function(){
 		$('.js-show-day').removeClass('is-active');
 		$(this).addClass('is-active');
-		getData(crimesByTime);
+		if($('.js-filter-auto-thefts').hasClass('is-active')){
+			getData(crimesByTime, '&event_clearance_group=Auto%20Thefts');
+		}
+		else{
+			getData(crimesByTime, '');
+		}
 	});
 
 });
 
-var getData = function(graphType){
+var getData = function(graphType, endpoint){
 	$('#loader').removeClass('is-hidden');
 	$('#chartdiv').addClass('is-hidden');
+	console.log(endpoint);
 	$.ajax({
 		type: "GET",
+<<<<<<< HEAD
 		url: "https://data.seattle.gov/resource/3k2p-39jp.json?$where=within_circle(incident_location, 47.595146, -122.331601, 1609.34)",
+=======
+		cache: true,
+		url: "https://data.seattle.gov/resource/3k2p-39jp.json?$where=within_circle(incident_location, 47.595146, -122.331601, 1609.34)" + endpoint,
+>>>>>>> 3dac4092b9031e3eb15c8b5ffbd4dc3184d57b39
 		})
 	.done(function(data){
+		console.log(data);
 		$('#loader').addClass('is-hidden');
 		$('#chartdiv').removeClass('is-hidden');
 		//send data from api to either the weekday or time bar graphs
@@ -43,12 +70,14 @@ var crimesByWeekday = function(data){
 	};
 	for(var i=0; i<data.length; i++){
 		var thisDate = (data[i].event_clearance_date);
-		//separate date from date and time
-		var thisDay = thisDate.substring(0, 10);
-		//get day of week name from date
-		var dayName = String(Date.parse(thisDay)).substring(0, 3);
+		if(typeof thisDate != 'undefined'){
+			//separate date from date and time
+			var thisDay = thisDate.substring(0, 10);
+			//get day of week name from date
+			var dayName = String(Date.parse(thisDay)).substring(0, 3);
 
-		dayOfWeek[dayName]++;
+			dayOfWeek[dayName]++;
+		}
 	}
 
 	getValues(dayOfWeek, 'day');
@@ -148,9 +177,11 @@ var crimesByTime = function(data){
 	for(var i=0; i<data.length; i++){
 		var thisDate = (data[i].event_clearance_date);
 		//separate time from date and time
-		var thisTime = thisDate.substring(11, 13);
+		if(typeof thisDate != 'undefined'){
+			var thisTime = thisDate.substring(11, 13);
 
-		timeOfDay[thisTime]++;
+			timeOfDay[thisTime]++;
+		}
 
 	}
 
@@ -290,12 +321,14 @@ var getValues = function(thisObj, objType){
 	var max = 0;
 	var min = 100;
 	for (var prop in thisObj) {
+		console.log(thisObj[prop] + "max");
 		if(thisObj[prop] > max){
 			var max = thisObj[prop];
 			var maxProp = prop;
 		}
 	}
 	for (var prop in thisObj) {
+		console.log(thisObj[prop] + "min")
 		if(thisObj[prop] < min){
 			var min = thisObj[prop];
 			var minProp = prop;
